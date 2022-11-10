@@ -67,14 +67,3 @@ where dea.continent is not null
 )
 Select *, (rolling_vaccincation_count/population)*100 as vaccination_percentage
 From PopVsVac
-
---Creating View for future visualizations
-
-Create View PercentPopulationVaccinated as
-select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
-SUM(cast(vac.new_vaccinations as bigint)) OVER (partition by dea.location order by dea.location, dea.date) as rolling_vaccination_count
-From CovidProject..CovidDeaths dea
-Join CovidProject..CovidVaccinations vac
-	on dea.location=vac.location
-	and dea.date=vac.date
-where dea.continent is not null
