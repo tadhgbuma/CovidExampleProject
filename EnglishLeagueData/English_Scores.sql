@@ -68,8 +68,8 @@ Join away_record A
 	AND H.Season = A.Season
 	group by H.team
 	)
-Select *,tot_scored - tot_conceded as tot_goal_diff, (tot_wins/games_played)*100 as win_percentage, (tot_draws/games_played)*100 as draw_percentage, (tot_losses/games_played)*100 as loss_percentage
-From total_record
+Select *,tot_scored - tot_conceded as tot_goal_diff, ((tot_wins + (0.5*tot_draws))/games_played)*100 as win_percentage
+from total_record
 order by tot_wins desc
 
 --Calculating average goals scored and the average difference in score per game for each season.
