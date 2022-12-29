@@ -73,17 +73,17 @@ Select top 10 *, tot_scored/games_played as avg_goals_per_game, tot_scored - tot
 from total_record
 order by win_percentage desc
 
---Creating a view of Manchester United vs Liverpool for Data visualisation
-Select Season, sum(case when winner = 'Liverpool' and loser = 'Manchester United' then 1 else 0 end) as Liverpool_Wins, 
-sum(case when winner='Manchester United' and loser='Liverpool' then 1 else 0 end) as MU_Wins, 
-sum(case when winner = 'Draw' and home = 'Manchester United' and visitor = 'Liverpool' then 1
-	when winner = 'Draw' and home = 'Liverpool' and visitor = 'Manchester United' then 1 
+--Creating a view of Manchester United vs Manchester City for Data visualisation
+Select Season, sum(case when winner = 'Manchester City' and loser = 'Manchester United' then 1 else 0 end) as City_Wins, 
+sum(case when winner='Manchester United' and loser='Manchester City' then 1 else 0 end) as MU_Wins, 
+sum(case when winner = 'Draw' and home = 'Manchester United' and visitor = 'Manchester City' then 1
+	when winner = 'Draw' and home = 'Manchester City' and visitor = 'Manchester United' then 1 
 	else 0 end) as Draws,
-sum(case when home = 'Liverpool' and visitor = 'Manchester United' then hgoal 
-	when home = 'Manchester United' and visitor = 'Liverpool' then vgoal 
-	else 0 end) as Liverpool_Goals,
-sum(case when home = 'Manchester United' and visitor = 'Liverpool' then hgoal 
-	when home = 'Liverpool' and visitor = 'Manchester United' then vgoal 
+sum(case when home = 'Manchester City' and visitor = 'Manchester United' then hgoal 
+	when home = 'Manchester United' and visitor = 'Manchester City' then vgoal 
+	else 0 end) as City_Goals,
+sum(case when home = 'Manchester United' and visitor = 'Manchester City' then hgoal 
+	when home = 'Manchester City' and visitor = 'Manchester United' then vgoal 
 	else 0 end) as MU_Goals
 From PortfolioProject..English_Scores
 Where tier=1
